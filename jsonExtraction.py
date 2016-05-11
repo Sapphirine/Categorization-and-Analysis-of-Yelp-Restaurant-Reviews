@@ -1,6 +1,8 @@
 import json
 import os
 import nltk
+from nltk.stem.wordnet import WordNetLemmatizer
+
 
 #Read from Json File
 review_id=[]
@@ -21,8 +23,7 @@ with open("samplereviewdata.json") as dataset:
             business_id.append(data["business_id"])
             review_text.append(data["text"])
             
-#POS tagging
-            
+#POS tagging          
 pos_tag=[]
 for review in review_text:
     words = []
@@ -38,11 +39,35 @@ for review in review_text:
 
     pos_tag.append(words)
 
+#WordNet Lemma    
+lemma=[]
+lem = WordNetLemmatizer()
+
+for pos in pos_tag:
+    nouns = []
+    words = [word for word in pos if word["pos"] in ["NN", "NNS"]]
+
+    for word in words:
+        nouns.append(lem.lemmatize(word["word"]))
+    lemma.append(nouns)
+
+
+"""
 print(review_id)
 print(stars)
 print(business_id)
 print(review_text)
 print(pos_tag)
+print(len(review_id))
+print(len(stars))
+print(len(business_id))
+print(len(review_text))
+print(len(pos_tag))
+print(len(lemma))    
+print(lemma)
+"""
+
+    
 
             
 
