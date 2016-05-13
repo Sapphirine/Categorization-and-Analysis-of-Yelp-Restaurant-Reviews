@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Big Data Project</title>
+    <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400|Source+Sans+Pro:400,300' rel='stylesheet' type='text/css'>
+  
+    
+  </head>
+  <header>
+    <h1> Matches: </h1>
+  </header>
+  <body style="background-image:url(/static/images/image.gif)">
+   <ol>
+   {% for key , value in matches.iteritems()%}
+         <li><strong>Restaurant name: {{key}} Matching topic and sentiment: {{value}}></strong></li>
+         
+   {% endfor %}  
+   </ol> 
+  </body>
+</html>
