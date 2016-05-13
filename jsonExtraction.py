@@ -88,7 +88,16 @@ print(len(pos_tag))
 print(len(lemma))    
 print(lemma)
 """
+#TRAIN
 
+texts = [[word for word in document.lower().split() if word not in stoplist] for document in review_text]
+dictionary = corpora.Dictionary(texts)
+corpus = [dictionary.doc2bow(text) for text in texts]
+lda = gensim.models.ldamodel.LdaModel(corpus=corpus, id2word=dictionary, num_topics=50, update_every=1, chunksize=10000, passes=1)
+print(lda.print_topics(50))
+
+with open("Output.txt", "w") as text_file:
+    text_file.write(lda.print_topics(50))
     
 
             
