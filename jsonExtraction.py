@@ -3,6 +3,16 @@ import os
 import nltk
 from nltk.stem.wordnet import WordNetLemmatizer
 
+stopwords = {}
+with open('stopwords.txt', 'rU') as f:
+    for line in f:
+        stopwords[line.strip()] = 1
+reviews_collection = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.REVIEWS_DATABASE][
+    Settings.REVIEWS_COLLECTION]
+tags_collection = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.TAGS_DATABASE][Settings.REVIEWS_COLLECTION]
+corpus_collection = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.TAGS_DATABASE][Settings.CORPUS_COLLECTION]
+
+        
 
 #Read from Json File
 review_id=[]
@@ -31,13 +41,19 @@ for review in review_text:
 
     for sentence in sentences:
         tokens = nltk.word_tokenize(sentence)
-        text = [word for word in tokens]# if word not in stopwords]
+        text = [word for word in tokens if word not in stopwords]
         tagged_text = nltk.pos_tag(text)
 
         for word, tag in tagged_text:
             words.append({"word": word, "pos": tag})
 
     pos_tag.append(words)
+    tags_collection.insert({
+        "reviewId": review["reviewId"],
+        "business": review["business"],
+        "text": review["text"],
+        "words": words
+    })
 
 #WordNet Lemma    
 lemma=[]
@@ -50,7 +66,13 @@ for pos in pos_tag:
     for word in words:
         nouns.append(lem.lemmatize(word["word"]))
     lemma.append(nouns)
-
+    
+    corpus_collection.insert({
+        "reviewId": review["reviewId"],
+        "business": review["business"],
+        "text": review["text"],
+        "words": nouns
+    })
 
 """
 print(review_id)
