@@ -92,10 +92,7 @@ def main():
 
 
     for reviews in reviews_cursor:
-        #print(reviews["business"])
-        #print ("Inside 1st loop")
         if reviews["business"]==business_id:
-            #print ("Inside 2nd loop")
             predict=Predict()
             predict.run(reviews["text"])
     """
