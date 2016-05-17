@@ -27,7 +27,7 @@ with open("samplereviewdata.json") as dataset:
         except ValueError:
             print 'Error'
     
-        if data["type"] == "review":
+        if data["type"] == "review" and data["votes"]["useful"]>=1::
             review_id.append(data["review_id"])
             stars.append(data["stars"])
             business_id.append(data["business_id"])
