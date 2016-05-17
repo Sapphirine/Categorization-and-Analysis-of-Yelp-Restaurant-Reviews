@@ -83,7 +83,7 @@ class Predict():
 def main():
     logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
-    business_ids=["9-pGDHbyIoP_KhguG6vI1Q","ArtsD3RqfCVjIRSZunIh_g","CVakWZjk_j44AB-Jbe0DPQ","iYk5QEI3IZmr25L3QWz4KQ","7Hmr1TDJah-14zprHUMlqw","J6i_Tt4dI7IUTIG9xaC8cg","7Hmr1TDJah-14zprHUMlqw","cjJvvEbpo9b_76hV_lyFXg","rtqtZ0_kOA-GP33mn6-Kpg","T-LhjPRqlS7hLGRmSMBbfA"]       
+    business_ids=["9-pGDHbyIoP_KhguG6vI1Q","ArtsD3RqfCVjIRSZunIh_g","CVakWZjk_j44AB-Jbe0DPQ","iYk5QEI3IZmr25L3QWz4KQ","7Hmr1TDJah-14zprHUMlqw","J6i_Tt4dI7IUTIG9xaC8cg","7Hmr1TDJah-14zprHUMlqw","cjJvvEbpo9b_76hV_lyFXg","rtqtZ0_kOA-GP33mn6-Kpg","T-LhjPRqlS7hLGRmSMBbfA,9pGDHbyPOP-KhjikG6vI1Q","DohsD3RqfCPjIRSZun_Ihg","POakdwajk-j44ABJbe0DPQ","Yk5QEI3IZmr25L3QWz_4KQ","LOP1TDJah14zprHUM_lqw","POMTt4dI7IUTIG_9xaC8cg","JKLsr1TDJah14zprHUMlqw","PPJvvEbpo9b-76hV_lyFXg","MCd_tZ0kOAGP33mn6K-pg","PLLhjPRqlSfdvfvd-MBbfA"]       
     business_id="T-LhjPRqlS7hLGRmSMBbfA"
     reviews_collection = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.REVIEWS_DATABASE][
     Settings.TEST_COLLECTION]
